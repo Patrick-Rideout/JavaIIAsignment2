@@ -1,10 +1,7 @@
 package Q3;
 
 import javax.xml.bind.JAXB;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -21,12 +18,12 @@ public class TrainingProgram {
 
         Scanner input = new Scanner(System.in);
 
+        new File("./logs").mkdirs();
+
         Path path = Paths.get("./logs/settings.xml");
         if (Files.exists(path))
         {
             System.out.println("File exists");
-
-
 
             try(BufferedReader output = Files.newBufferedReader(path)) {
 
@@ -83,7 +80,6 @@ public class TrainingProgram {
                             break;
                         }
 
-
                         System.out.println("5) Functional Threshold Power");
                         double fTP = input.nextDouble();
 
@@ -93,11 +89,10 @@ public class TrainingProgram {
 
                         changed = true;
 
-
                     } else if (Objects.equals(choice, "3")) {
                         try (BufferedWriter writer = Files.newBufferedWriter(path)) {
                             JAXB.marshal(settings, writer);
-                            System.out.println("Settings updated successfully.");
+                            System.out.println("Settings updated!");
                         } catch (IOException e) {
                             e.printStackTrace();
                             System.err.println(e.getMessage());

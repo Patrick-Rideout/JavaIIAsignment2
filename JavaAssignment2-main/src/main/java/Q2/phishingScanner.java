@@ -26,7 +26,6 @@ public class phishingScanner {
                 email = email.replace("'","");
 
                 String[] emailWords = email.split("\\W+");
-                //The \\W+ will match all non-alphabetic characters occurring one or more times.
 
                 scanContent(emailWords);
 
