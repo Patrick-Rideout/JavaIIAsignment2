@@ -1,5 +1,7 @@
 package Q3;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Settings {
@@ -53,5 +55,12 @@ public class Settings {
 
     public void setFunctionalThresholdPower(double functionalThresholdPower) {
         this.functionalThresholdPower = functionalThresholdPower;
+    }
+
+    public String getDateToString() {
+        String pattern = "dd/MM/yyyy";
+        DateFormat dateFormat = new SimpleDateFormat(pattern);
+        return dateFormat.format(birthday);
+
     }
 }

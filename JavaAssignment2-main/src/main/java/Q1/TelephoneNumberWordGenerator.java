@@ -39,9 +39,7 @@ public class TelephoneNumberWordGenerator {
                     continue;
                 }
                 else {
-                    for (int digit : listOfNumbers) {
-                        System.out.println(digit);
-                    }
+                    System.out.println(listOfNumbers);
                 }
 
 

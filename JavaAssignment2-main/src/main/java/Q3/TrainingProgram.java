@@ -32,16 +32,26 @@ public class TrainingProgram {
 
                 Settings settings = JAXB.unmarshal(output, Settings.class);
 
+                boolean changed = false;
+
                 while (true) {
                     System.out.println("\nOptions:");
                     System.out.println("1) View settings");
                     System.out.println("2) Update settings");
-                    System.out.println("3) Exit");
+                    System.out.println("3) Exit (Save)");
 
                     String choice = input.nextLine();
 
                     if (Objects.equals(choice, "1")) {
+                        System.out.printf("Name: %s\n", settings.getName());
+                        System.out.printf("Height: %.2f\n", settings.getHeight());
+                        System.out.printf("Weight: %.2f\n", settings.getWeight());
+                        System.out.printf("Birthday: %s\n", settings.getDateToString());
+                        System.out.printf("Power Level: %.2f\n", settings.getFunctionalThresholdPower());
 
+                        if (changed) {
+                            System.out.printf("\nCHANGES NOT SAVED\n");
+                        }
 
 
                     } else if (Objects.equals(choice, "2")) {
@@ -81,6 +91,8 @@ public class TrainingProgram {
 
                         input.nextLine();
 
+                        changed = true;
+
 
                     } else if (Objects.equals(choice, "3")) {
                         try (BufferedWriter writer = Files.newBufferedWriter(path)) {
@@ -103,12 +115,6 @@ public class TrainingProgram {
                 ex.printStackTrace();
                 System.err.println(ex.getMessage());
             }
-
-
-
-
-
-
 
         }
         else {
@@ -145,16 +151,12 @@ public class TrainingProgram {
                     System.err.println("Invalid date format. Please use YYYY-MM-DD.");
                 }
 
-
                 System.out.println("5) Functional Threshold Power");
                 double fTP = input.nextDouble();
 
                 settings.setFunctionalThresholdPower(fTP);
-
                 input.nextLine();
-
                 JAXB.marshal(settings, output);
-
             }
             catch(IOException ex) {
                 ex.printStackTrace();
